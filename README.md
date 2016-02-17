@@ -1,6 +1,9 @@
 ssl-context-tools
 =================
 
+[![Build Status](https://travis-ci.org/soulwing/ssl-context-tools.svg?branch=master)](https://travis-ci.org/soulwing/ssl-context-tools)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.soulwing/ssl-context-tools/badge.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.soulwing%20a%3Assl-context-tools*)
+
 This small library provides some convenient tools for configuring and creating
 `SSLContext` objects.  
 
@@ -23,6 +26,17 @@ include (or exclude) among those supported by the underlying JSSE.
 An `SSLContext` created from the builder will produce `SSLSocketFactory`, 
 `SSLServerSocketFactory`, and `SSLEngine` instances that ensure that the
 configured constraints on protocols and cipher suites are consistently applied.
+
+This library is available via Maven Central and can be used in your project
+by including the following dependency.
+
+```
+<dependency>
+  <groupId>org.soulwing.ssl</groupId>
+  <artifactId>ssl-context-tools</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
 
 Creating an `SSLContext`
 ------------------------
