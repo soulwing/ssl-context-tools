@@ -34,9 +34,12 @@ by including the following dependency.
 <dependency>
   <groupId>org.soulwing.ssl</groupId>
   <artifactId>ssl-context-tools</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.2</version>
 </dependency>
 ```
+
+See the [Javadocs](https://soulwing.github.io/ssl-context-tools/apidocs) for
+full details of the API.
 
 Creating an `SSLContext`
 ------------------------
@@ -135,4 +138,19 @@ SSLSocketFactory socketFactory = sslContext.getSocketFactory();
 If the password for the private key differs from the one used to access the
 key store, you can specify it as the argument to the `credential` builder method.
 
- 
+### Handling Other Special Situations
+
+* When creating an `SSLServerSocket` for which you want the client to authentication
+  use `SSLContextBuilder.clientAuthentication` to specify the authentication requirement.
+* Customize the allowed cipher suites using `SSLContextBuilder.includeCipherSuites` and
+  `SSLContextBuilder.excludeCipherSuites`. When building the context, the full set of
+  cipher suites supported by the JRE is intersected with the set of included cipher suites
+  (if specified), then the set of excluded cipher suites is removed.
+* Customize the allowed SSL/TLS proptocls using `SSLContextBuilder.includeProtocols`
+  and `SSLContextBuilder.excludeProtocols`. When building the context, the full set of
+  protocols supported by the JRE is intersected with the set of included protocols
+  (if specified), then the set of excluded protocols is removed.
+* Specify an secure random number generator using `SSLContextBuilder.secureRandom`.
+* Use a specific JCA provider using `SSLContextBuilder.provider`.
+
+See the [Javadocs](https://soulwing.github.io/ssl-context-tools/apidocs) for more details.
