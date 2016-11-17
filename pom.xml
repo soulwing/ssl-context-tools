@@ -43,6 +43,13 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  
+  <inceptionYear>2016</inceptionYear>
+
+  <organization>
+    <name>Carl E Harris, Jr</name>
+    <url>https://github.com/soulwing</url>
+  </organization>
 
   <developers>
     <developer>
