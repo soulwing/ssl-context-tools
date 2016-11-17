@@ -133,6 +133,6 @@ SSLSocketFactory socketFactory = sslContext.getSocketFactory();
 ```
 
 If the password for the private key differs from the one used to access the
-key store, you can specify it as the argument the `credential` builder method.
+key store, you can specify it as the argument to the `credential` builder method.
 
  
