@@ -117,7 +117,7 @@ Instead of configuring the credential through system properties, you can create
 a custom SSL context configured to use a given credential.
 
 Suppose that your client's credential (certificate and corresponding private key)
-is stored in a PKCS 12 key store named 'client-credential.p12'. You can create a 
+is stored in a PKCS 12 key store named `client-credential.p12`. You can create a 
 custom SSL context for this credential as follows.
 
 ```
