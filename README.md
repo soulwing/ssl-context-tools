@@ -22,10 +22,10 @@ provides little support that would allow an application to ensure that all SSL
 sockets use a configured set of allowable protocols and cipher suites.
 
 The `SSLContextBuilder` allows you to specify protocols and cipher suites to
-include (or exclude) among those supported by the underlying JSSE.  
-An `SSLContext` created from the builder will produce `SSLSocketFactory`, 
-`SSLServerSocketFactory`, and `SSLEngine` instances that ensure that the
-configured constraints on protocols and cipher suites are consistently applied.
+include (or exclude) among those supported by the underlying JSSE.  An `SSLContext` 
+created from the builder will produce `SSLSocketFactory`, `SSLServerSocketFactory`, 
+and `SSLEngine` instances that ensure that the configured constraints on protocols 
+and cipher suites are consistently applied.
 
 This library is available via Maven Central and can be used in your project
 by including the following dependency.
@@ -142,14 +142,14 @@ key store, you can specify it as the argument to the `credential` builder method
 
 * When creating an `SSLServerSocket` for which you want the client to authentication
   use `SSLContextBuilder.clientAuthentication` to specify the authentication requirement.
-* Customize the allowed cipher suites using `SSLContextBuilder.includeCipherSuites` and
-  `SSLContextBuilder.excludeCipherSuites`. When building the context, the full set of
-  cipher suites supported by the JRE is intersected with the set of included cipher suites
-  (if specified), then the set of excluded cipher suites is removed.
 * Customize the allowed SSL/TLS proptocls using `SSLContextBuilder.includeProtocols`
   and `SSLContextBuilder.excludeProtocols`. When building the context, the full set of
   protocols supported by the JRE is intersected with the set of included protocols
   (if specified), then the set of excluded protocols is removed.
+* Customize the allowed cipher suites using `SSLContextBuilder.includeCipherSuites` and
+  `SSLContextBuilder.excludeCipherSuites`. When building the context, the full set of
+  cipher suites supported by the JRE is intersected with the set of included cipher suites
+  (if specified), then the set of excluded cipher suites is removed.
 * Specify an secure random number generator using `SSLContextBuilder.secureRandom`.
 * Use a specific JCA provider using `SSLContextBuilder.provider`.
 
