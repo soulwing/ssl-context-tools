@@ -2,7 +2,7 @@ ssl-context-tools
 =================
 
 [![Build Status](https://travis-ci.org/soulwing/ssl-context-tools.svg?branch=master)](https://travis-ci.org/soulwing/ssl-context-tools)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.soulwing/ssl-context-tools/badge.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.soulwing.ssl%20a%3Assl-context-tools)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.soulwing.ssl/ssl-context-tools/badge.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.soulwing.ssl%20a%3Assl-context-tools)
 
 This small library provides some convenient tools for configuring and creating
 `SSLContext` objects.  
