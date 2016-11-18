@@ -27,8 +27,12 @@ created from the builder will produce `SSLSocketFactory`, `SSLServerSocketFactor
 and `SSLEngine` instances that ensure that the configured constraints on protocols 
 and cipher suites are consistently applied.
 
+Using the Library
+-----------------
+
 This library is available via Maven Central and can be used in your project
-by including the following dependency.
+by including the following dependency in your Maven pom, or doing the equivalent
+for your preferred build system.
 
 ```
 <dependency>

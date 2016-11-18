@@ -32,18 +32,22 @@ import javax.net.ssl.SSLContext;
 public interface SSLContextBuilder {
 
   /**
-   * A enumeration of client authentication types
+   * An enumeration of client authentication types
    */
   enum ClientAuthentication {
+    /** Indicates that client authentication is desired */
     NONE,
+    /** Indicates that client authentication is desired but not required */
     REQUESTED,
+    /** Indicates that client authentication is required */
     REQUIRED
   }
 
   /**
-   * Specifies the name of the secure socket protocol (e.g. TLS).
+   * Specifies the name of the secure socket protocol this context will use.
    * @param protocol protocol name
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext">JCA Standard Algorithm Names for SSLContext</a>
    */
   SSLContextBuilder protocol(String protocol);
 
@@ -69,6 +73,7 @@ public interface SSLContextBuilder {
    * options.
    * @param protocol protocol name or regular expression
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext">JCA Standard Algorithm Names for SSLContext</a>
    */
   SSLContextBuilder excludeProtocol(String protocol);
 
@@ -80,6 +85,7 @@ public interface SSLContextBuilder {
    * options.
    * @param protocols protocol names or regular expressions
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext">JCA Standard Algorithm Names for SSLContext</a>
    */
   SSLContextBuilder excludeProtocols(String... protocols);
 
@@ -91,6 +97,7 @@ public interface SSLContextBuilder {
    * options.
    * @param protocol protocol name or regular expression
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext">JCA Standard Algorithm Names for SSLContext</a>
    */
   SSLContextBuilder includeProtocol(String protocol);
 
@@ -102,6 +109,7 @@ public interface SSLContextBuilder {
    * options.
    * @param protocols protocol names or regular expressions
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext">JCA Standard Algorithm Names for SSLContext</a>
    */
   SSLContextBuilder includeProtocols(String... protocols);
 
@@ -113,6 +121,7 @@ public interface SSLContextBuilder {
    * options.
    * @param cipherSuite cipher suite name or regular expression
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#ciphersuites">JSSE Cipher Suite Names</a>
    */
   SSLContextBuilder excludeCipherSuite(String cipherSuite);
 
@@ -124,6 +133,7 @@ public interface SSLContextBuilder {
    * options.
    * @param cipherSuites cipher suite names or regular expressions
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#ciphersuites">JSSE Cipher Suite Names</a>
    */
   SSLContextBuilder excludeCipherSuites(String... cipherSuites);
 
@@ -135,6 +145,7 @@ public interface SSLContextBuilder {
    * options.
    * @param cipherSuite cipher suite name or regular expression
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#ciphersuites">JSSE Cipher Suite Names</a>
    */
   SSLContextBuilder includeCipherSuite(String cipherSuite);
 
@@ -146,6 +157,7 @@ public interface SSLContextBuilder {
    * options.
    * @param cipherSuites cipher suite names or regular expressions
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#ciphersuites">JSSE Cipher Suite Names</a>
    */
   SSLContextBuilder includeCipherSuites(String... cipherSuites);
 
@@ -153,7 +165,7 @@ public interface SSLContextBuilder {
    * Specifies whether client authentication should be performed on SSL server
    * sockets produced by a factory created from the resulting context.
    * @param type client authentication type
-   * @return
+   * @return this builder
    */
   SSLContextBuilder clientAuthentication(ClientAuthentication type);
 
@@ -232,7 +244,8 @@ public interface SSLContextBuilder {
   /**
    * Builds an SSL context according to the configuration of this builder.
    * @return SSL context
-   * @throws SSLRuntimeException
+   * @throws SSLRuntimeException if the underlying JCA provider throws a
+   *   checked exception
    */
   SSLContext build() throws SSLRuntimeException;
 

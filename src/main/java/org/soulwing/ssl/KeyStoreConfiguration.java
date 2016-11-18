@@ -25,73 +25,75 @@ import java.security.Provider;
 
 /**
  * A configuration for a {@link KeyStore} builder.
+ *
+ * @param <T> builder type
  * @author Carl Harris
  */
 public interface KeyStoreConfiguration<T> {
 
   /**
-   * Configures the key store type.
+   * Specifies the key store type.
    * @param type key store type (e.g. JKS)
    * @return this builder
+   * @see <a target="_top" href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#KeyStore">JCA Standard Algorithm Names for KeyStore types</a>
    */
   T type(String type);
 
   /**
-   * Configures the name of the JCA provider that will produce the key store.
+   * Specifies the name of the JCA provider that will produce the key store.
    * @param providerName provider name
    * @return this builder
    */
   T provider(String providerName);
 
   /**
-   * Configures the JCA provider that will produce the key store.
+   * Specifies the JCA provider that will produce the key store.
    * @param provider JCA provider
    * @return this builder
    */
   T provider(Provider provider);
 
   /**
-   * Configures the key store password.
+   * Specifies the key store password.
    * @param password password
    * @return this builder
    */
   T password(char[] password);
 
   /**
-   * Configures the key store password.
+   * Specifies the key store password.
    * @param password password
    * @return this builder
    */
   T password(String password);
 
   /**
-   * Configures the key store location.
+   * Specifies the key store location.
    * @param location URL that specifies the location of the key store
    * @return this builder
    */
   T location(URL location);
 
   /**
-   * Configures the key store location.
-   * @param location URI that specifies the location of the key store; the
-   *    URI may use the {@code classpath:} pseudo-scheme to specify the
-   *    location of the key store relative to the root of the thread context
-   *    class loader
+   * Specifies the key store location.
+   * @param location URI that specifies the location of the key store; may use 
+   *    the {@code classpath:} pseudo-scheme to specify the location of the key 
+   *    store relative to the root of the thread context class loader
    * @return this builder
    */
   T location(URI location);
 
   /**
-   * Configures the key store location.
+   * Specifies the key store location.
    * @param location URI or path that specifies the location of the key store;
-   *    if a URI the {@code classpath:} pseudo-scheme specifies the location of
+   *    may use the {@code classpath:} pseudo-scheme to specify the location of
    *    the key store relative to the root of the thread context class loader
    * @return this builder
    */
   T location(String location);
 
   /**
-   * Configures the key store location.
+   * Specifies the key store location.
    * @param location path to the key store resource relative to
    *    {@code relativeToClass}
    * @param relativeToClass base class path location; its class loader will be
@@ -101,7 +103,7 @@ public interface KeyStoreConfiguration<T> {
   T location(String location, Class<?> relativeToClass);
 
   /**
-   * Configures the key store location.
+   * Specifies the key store location.
    * @param location path to the key store resource relative to the root of
    *    {@code classLoader}
    * @param classLoader that will be used to access the resource

@@ -33,8 +33,8 @@ public interface KeyStoreBuilder extends KeyStoreConfiguration<KeyStoreBuilder> 
   /**
    * Builds a key store according to the configuration of this builder.
    * @return key store
-   * @throws SSLRuntimeException if a checked exception occurs while creating
-   *    and loading the key store
+   * @throws SSLRuntimeException if the underlying JCA provider throws a checked 
+   *    exception occurs while creating or loading the key store
    */
   KeyStore build() throws SSLRuntimeException;
 
