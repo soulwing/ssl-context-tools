@@ -20,13 +20,10 @@ package org.soulwing.ssl;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import javax.net.ssl.SSLParameters;
-import javax.net.ssl.SSLServerSocket;
-import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
@@ -55,6 +52,13 @@ class SSLSocketFactoryWrapper extends SSLSocketFactory {
   @Override
   public String[] getSupportedCipherSuites() {
     return delegate.getSupportedCipherSuites();
+  }
+
+  @Override
+  public Socket createSocket() throws IOException {
+    SSLSocket sslSocket = (SSLSocket) delegate.createSocket();
+    sslSocket.setSSLParameters(parameters);
+    return sslSocket;
   }
 
   @Override

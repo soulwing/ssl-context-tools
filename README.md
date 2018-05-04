@@ -2,7 +2,7 @@ ssl-context-tools
 =================
 
 [![Build Status](https://travis-ci.org/soulwing/ssl-context-tools.svg?branch=master)](https://travis-ci.org/soulwing/ssl-context-tools)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.soulwing/ssl-context-tools/badge.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.soulwing%20a%3Assl-context-tools*)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.soulwing.ssl/ssl-context-tools/badge.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aorg.soulwing.ssl%20a%3Assl-context-tools)
 
 This small library provides some convenient tools for configuring and creating
 `SSLContext` objects.  
@@ -22,21 +22,28 @@ provides little support that would allow an application to ensure that all SSL
 sockets use a configured set of allowable protocols and cipher suites.
 
 The `SSLContextBuilder` allows you to specify protocols and cipher suites to
-include (or exclude) among those supported by the underlying JSSE.  
-An `SSLContext` created from the builder will produce `SSLSocketFactory`, 
-`SSLServerSocketFactory`, and `SSLEngine` instances that ensure that the
-configured constraints on protocols and cipher suites are consistently applied.
+include (or exclude) among those supported by the underlying JSSE.  An `SSLContext` 
+created from the builder will produce `SSLSocketFactory`, `SSLServerSocketFactory`, 
+and `SSLEngine` instances that ensure that the configured constraints on protocols 
+and cipher suites are consistently applied.
+
+Using the Library
+-----------------
 
 This library is available via Maven Central and can be used in your project
-by including the following dependency.
+by including the following dependency in your Maven pom, or doing the equivalent
+for your preferred build system.
 
 ```
 <dependency>
   <groupId>org.soulwing.ssl</groupId>
   <artifactId>ssl-context-tools</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.2</version>
 </dependency>
 ```
+
+See the [Javadocs](https://soulwing.github.io/ssl-context-tools/apidocs) for
+full details of the API.
 
 Creating an `SSLContext`
 ------------------------
@@ -117,7 +124,7 @@ Instead of configuring the credential through system properties, you can create
 a custom SSL context configured to use a given credential.
 
 Suppose that your client's credential (certificate and corresponding private key)
-is stored in a PKCS 12 key store named 'client-credential.p12'. You can create a 
+is stored in a PKCS 12 key store named `client-credential.p12`. You can create a 
 custom SSL context for this credential as follows.
 
 ```
@@ -133,6 +140,21 @@ SSLSocketFactory socketFactory = sslContext.getSocketFactory();
 ```
 
 If the password for the private key differs from the one used to access the
-key store, you can specify it as the argument the `credential` builder method.
+key store, you can specify it as the argument to the `credential` builder method.
 
- 
+### Handling Other Special Situations
+
+* When creating an `SSLServerSocket` for which you want the client to authentication
+  use `SSLContextBuilder.clientAuthentication` to specify the authentication requirement.
+* Customize the allowed SSL/TLS protocols using `SSLContextBuilder.includeProtocols`
+  and `SSLContextBuilder.excludeProtocols`. When building the context, the full set of
+  protocols supported by the JRE is intersected with the set of included protocols
+  (if specified), then the set of excluded protocols is removed.
+* Customize the allowed cipher suites using `SSLContextBuilder.includeCipherSuites` and
+  `SSLContextBuilder.excludeCipherSuites`. When building the context, the full set of
+  cipher suites supported by the JRE is intersected with the set of included cipher suites
+  (if specified), then the set of excluded cipher suites is removed.
+* Specify a secure random number generator using `SSLContextBuilder.secureRandom`.
+* Use a specific JCA provider using `SSLContextBuilder.provider`.
+
+See the [Javadocs](https://soulwing.github.io/ssl-context-tools/apidocs) for more details.

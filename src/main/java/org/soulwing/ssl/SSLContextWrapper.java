@@ -21,7 +21,7 @@ package org.soulwing.ssl;
 import javax.net.ssl.SSLContext;
 
 /**
- * A wrapper for a {@link SSLContext} that allows configured SSL parameters
+ * A wrapper for an {@link SSLContext} that allows configured SSL parameters
  * to be configured on sockets and engines produced by the wrapped context.
  *
  * @author Carl Harris

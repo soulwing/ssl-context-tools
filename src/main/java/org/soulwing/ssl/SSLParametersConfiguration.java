@@ -22,7 +22,7 @@ import javax.net.ssl.SSLParameters;
 
 /**
  * A configuration to use in deriving an {@link SSLParameters} instance from
- * supported and default SSL parameters.s
+ * supported and default SSL parameters.
  *
  * @author Carl Harris
  */
