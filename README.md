@@ -10,9 +10,9 @@ This small library provides some convenient tools for configuring and creating
 Custom SSL context objects are often needed when connecting to a server that 
 uses a self-signed SSL certificate or when SSL mutual authentication is 
 required. Creating an `SSLContext` requires many steps and fairly extensive 
-knowledge of the Java Secure Socket Extension (JSSE) APIs. This library provides 
-a convenient and easy to use `SSLContextBuilder` that handles the most common 
-cases of SSL context configuration and creation.
+knowledge of the Java Secure Socket Extension (JSSE) APIs. This library 
+provides a convenient and easy to use `SSLContextBuilder` that handles the 
+most common cases of SSL context configuration and creation.
 
 The JSSE includes support for customizing the allowable SSL/TLS protocols and
 cipher suites by configuring `SSLSocket` and `SSLServerSocket` instances.  A
@@ -22,10 +22,10 @@ provides little support that would allow an application to ensure that all SSL
 sockets use a configured set of allowable protocols and cipher suites.
 
 The `SSLContextBuilder` allows you to specify protocols and cipher suites to
-include (or exclude) among those supported by the underlying JSSE.  An `SSLContext` 
-created from the builder will produce `SSLSocketFactory`, `SSLServerSocketFactory`, 
-and `SSLEngine` instances that ensure that the configured constraints on protocols 
-and cipher suites are consistently applied.
+include (or exclude) among those supported by the underlying JSSE.  An 
+`SSLContext` created from the builder will produce `SSLSocketFactory`, 
+`SSLServerSocketFactory`, and `SSLEngine` instances that ensure that the 
+configured constraints on protocols and cipher suites are consistently applied.
 
 Using the Library
 -----------------
@@ -38,7 +38,7 @@ for your preferred build system.
 <dependency>
   <groupId>org.soulwing.ssl</groupId>
   <artifactId>ssl-context-tools</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
@@ -75,10 +75,11 @@ probably not going to write all that socket handling code yourself, if you're
 using a library such as Apache HTTP Components, it allows you to specify an 
 SSL socket factory for just this sort of need.
 
-Of course, we could ask our system administrator to add the server's certificate 
-to the JVM's `cacerts` -- sysadmins love doing that sort of thing! Then we don't
-need to do any custom configuration at all. But when using `ssl-tools` the 
-necessary custom configuration is so easy, you won't want to bother your sysadmin!
+Of course, we could ask our system administrator to add the server's 
+certificate to the JVM's `cacerts` -- sysadmins love doing that sort of thing! 
+Then we don't need to do any custom configuration at all. But when using 
+`ssl-tools` the necessary custom configuration is so easy, you won't want 
+to bother your sysadmin!  
 
 First, we need to put the server's certificate into a key store as a trusted
 certificate. If the certificate is in a file named `server.crt`, we can load it
@@ -108,10 +109,10 @@ SSLSocketFactory socketFactory = sslContext.getSocketFactory();
 
 ### Specifying a Credential
 
-Web services exposed over HTTP commonly use SSL mutual authentication. When
-connecting a client to such a web service, the client must present a certificate
-credential. In order to access such a service, you'll need an `SSLSocketFactory`
-that is configured with the client's credential.
+Web services exposed over HTTPS commonly use SSL mutual authentication. When
+connecting a client to such a web service, the client must present a 
+certificate credential. In order to access such a service, you'll need an 
+`SSLSocketFactory` that is configured with the client's credential.
 
 When starting the JVM you can specify the `javax.net.ssl.keyStore` system 
 property and its related properties to identify a key store that will be used
@@ -123,9 +124,9 @@ credentials to different peers when accessing more than one web service.
 Instead of configuring the credential through system properties, you can create
 a custom SSL context configured to use a given credential.
 
-Suppose that your client's credential (certificate and corresponding private key)
-is stored in a PKCS 12 key store named `client-credential.p12`. You can create a 
-custom SSL context for this credential as follows.
+Suppose that your client's credential (certificate and corresponding private 
+key) is stored in a PKCS 12 key store named `client-credential.p12`. You can 
+create a custom SSL context for this credential as follows.
 
 ```
 SSLContext sslContext = SSLContextBuilderFactory.newBuilder()
@@ -140,21 +141,29 @@ SSLSocketFactory socketFactory = sslContext.getSocketFactory();
 ```
 
 If the password for the private key differs from the one used to access the
-key store, you can specify it as the argument to the `credential` builder method.
+key store, you can specify it as the argument to the `credential` builder 
+method.
 
 ### Handling Other Special Situations
 
-* When creating an `SSLServerSocket` for which you want the client to authentication
-  use `SSLContextBuilder.clientAuthentication` to specify the authentication requirement.
-* Customize the allowed SSL/TLS protocols using `SSLContextBuilder.includeProtocols`
-  and `SSLContextBuilder.excludeProtocols`. When building the context, the full set of
-  protocols supported by the JRE is intersected with the set of included protocols
-  (if specified), then the set of excluded protocols is removed.
-* Customize the allowed cipher suites using `SSLContextBuilder.includeCipherSuites` and
-  `SSLContextBuilder.excludeCipherSuites`. When building the context, the full set of
-  cipher suites supported by the JRE is intersected with the set of included cipher suites
-  (if specified), then the set of excluded cipher suites is removed.
-* Specify a secure random number generator using `SSLContextBuilder.secureRandom`.
+* When creating an `SSLServerSocket` for which you want a client to
+  authenticate use `SSLContextBuilder.clientAuthentication` to specify 
+  the authentication requirement.
+* Customize the allowed SSL/TLS protocols using 
+  `SSLContextBuilder.includeProtocols` and 
+  `SSLContextBuilder.excludeProtocols`. When building the context, the full 
+  set of protocols supported by the JRE is intersected with the set of 
+  included protocols (if specified), then the set of excluded protocols is 
+  removed.
+* Customize the allowed cipher suites using 
+  `SSLContextBuilder.includeCipherSuites` and
+  `SSLContextBuilder.excludeCipherSuites`. When building the context, the 
+  full set of cipher suites supported by the JRE is intersected with the 
+  set of included cipher suites (if specified), then the set of excluded 
+  cipher suites is removed.
+* Specify a secure random number generator using 
+  `SSLContextBuilder.secureRandom`.
 * Use a specific JCA provider using `SSLContextBuilder.provider`.
 
-See the [Javadocs](https://soulwing.github.io/ssl-context-tools/apidocs) for more details.
+See the [Javadocs](https://soulwing.github.io/ssl-context-tools/apidocs) 
+for more details.
