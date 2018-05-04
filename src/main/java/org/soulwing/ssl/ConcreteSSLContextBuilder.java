@@ -183,7 +183,7 @@ class ConcreteSSLContextBuilder implements SSLContextBuilder {
   @Override
   public SSLContextBuilder peerTrust(KeyStore trustStore) {
     this.trustStore = trustStore;
-    return null;
+    return this;
   }
 
   @Override
